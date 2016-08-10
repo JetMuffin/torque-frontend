@@ -1,0 +1,103 @@
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span class="si-close modal-close" ng-click="cancel()"></span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">Create Job</h4>
+                </div>
+                <div class="modal-body job">
+                    <form name="Job">
+                    <uib-tabset active="activePill" vertical="true" type="pills" class="vertical-tabs">
+                        <uib-tab index="0" heading="Basic">
+                            <div class="form-group">
+                                <label for="name-field" class="control-label">Job Name</label>
+                                <div><input type="text" id="name-field" ng-model="job.name" class="form-control" valid-method="blur"></div>
+                            </div>                           
+                            <div class="form-group">
+                                <label for="name-field" class="control-label">Date Time</label>
+                                <div><input type="text" id="name-field" ng-model="job.date_time" class="form-control"></div>
+                            </div>  
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="name-field" class="control-label">Error Path</label>
+                                    <div><input type="text" id="name-field" class="form-control" ng-model="job.error_path"></div>
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="name-field" class="control-label">Output Path</label>
+                                    <div><input type="text" id="name-field" class="form-control" ng-model="job.output_path"></div>
+                                </div>    
+                                <div class="col-md-12 form-group">
+                                    <label for="merge-output-error" class="control-label"><input type="checkbox" id="merge-output-error" ng-model="job.merge_output_error">Merge ouput and error
+                                    </label>
+                                        
+                                </div>                                                            
+                            </div>  
+                            <div class="form-group">
+                                <label for="name-field" class="control-label">Command</label>
+                                <div><textarea type="text" id="name-field" ng-model="job.cmd" class="form-control"></textarea></div>
+                                
+                            </div>                                                      
+                        </uib-tab>
+                        <uib-tab index="1" heading="Resources">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name-field" class="control-label">Node number</label>
+                                        <div><input type="text" id="name-field" ng-model="job.nodes" class="form-control" valid-method="blur"></div>
+                                    </div>                                      
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name-field" class="control-label">Processor per node</label>
+                                        <div><input type="text" id="name-field" ng-model="job.ppn" class="form-control" valid-method="blur"></div>
+                                    </div>                                      
+                                </div>
+                            </div>   
+                            <div class="form-group">
+                                <label for="name-field" class="control-label">Wall Time</label>
+                                <div><input type="text" id="name-field" class="form-control" ng-model="job.walltime"></div>
+                            </div>  
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <label for="name-field" class="control-label">Memory</label>
+                                        <div><input type="text" id="name-field" class="form-control" ng-model="job.mem"></div>
+                                    </div>                                       
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="name-field" class="control-label"></label>
+                                        <select class="form-control" id="name-field" ng-model="job.mem_unit">
+                                            <option value="G">GB</option>
+                                            <option value="M" selected="selected">MB</option>
+                                            <option value="K">KB</option>
+                                        </select>
+                                    </div>                                       
+                                </div>
+                            </div>   
+                                                                             
+                        </uib-tab>
+                        <uib-tab index="2" heading="Queue">
+                            <div class="form-group">
+                                <label for="name-field" class="control-label">Queue</label>
+                                <div><input type="text" id="name-field" ng-model="job.queue" class="form-control"></div>
+                            </div>  
+                            <div class="form-group">
+                                <label for="name-field" class="control-label">Priority</label>
+                                <div><input type="text" id="name-field" ng-model="job.priority" class="form-control"></div>
+                            </div>                                                     
+                        </uib-tab>
+                        <uib-tab index="3" heading="Script">
+                            <div hljs hljs-no-escape hljs-source="code" hljs-language="bash"></div>
+                            <div class="form-group">
+                                <label for="name-field" class="control-label">Custom script file</label>
+                                <ng-file-input mode="text" callback="readScripts(file)"></ng-file-input>
+                            </div>
+                        </uib-tab>
+                    </uib-tabset>
+                    </form>
+                    <div class="clearfix"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-white" ng-click="cancel()">Cancel</button>
+                    <button type="button" class="btn btn-primary" ng-click="submit(Job)" ng-disabled="!checkValid(Job)">Create</button>
+                </div>
+

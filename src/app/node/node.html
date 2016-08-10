@@ -1,0 +1,50 @@
+<div id="node" class="animated fadeIn">
+    <h3 class="content-title">
+        {{nodes.length}} Nodes
+    </h3>
+   <div class="row">
+        <div class="job-filter m-b col-sm-12">
+            <div class="btn-group" role="group" aria-label="...">
+                <button type="button" ui-sref-active="selected" class="btn btn-default" ui-sref="navbar.node({query: 'all'})">All <span class="badge badge-white selected">{{nodes.length}}</span></button>
+                <button type="button" class="btn btn-default" ui-sref-active="selected"  ui-sref="navbar.node({query: 'Free'})"><i class="fa fa-circle text-healthy"></i>Free<span class="badge badge-white">{{healthyJobCount}}</span></button>
+                <button type="button" class="btn btn-default" ui-sref-active="selected" ui-sref="navbar.node({query: 'Running'})"><i class="fa fa-circle text-danger"></i>Running<span class="badge badge-white">{{unhealthyJobCount}}</span></button>
+            </div>
+            <form ng-submit="search()">
+                <div class="job-search">
+                    <span><i class="fa fa-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Filter" ng-model="search_key" >
+                </div>          
+            </form> 
+            <div class="clearfix"></div>            
+        </div>
+        <div class="job-list dcc-list col-sm-12">
+            <table class="table table-striped" at-table at-list="nodes" at-config="config">
+                <thead>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td at-implicit at-sortable at-attribute="name" at-initial-sorting="asc"></td>
+                        <td at-title="jobs" at-sortable class="node-resource">
+                            <span>{{item.jobs.length}}</span> 
+                        </td>
+                        <td at-title="cpu" at-sortable class="node-resource">
+                            <span>{{item.status.ncpus}}</span> 
+                        </td>
+                        <td at-title="mem" at-sortable width="200"  class="node-resource">
+                            <div class="progress">
+                                <div style="width: {{item.avail_mem/item.tot_mem*100}}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="{{item.avail_mem/item.tot_mem*100}}" role="progressbar" class="progress-bar progress-bar-success">
+                                </div>
+                            </div> 
+                            <span>{{item.avail_mem/item.tot_mem| number:2}}%</span>
+                        </td>    
+                        <td at-title="state" at-sortable class="node-role">
+                            <span class="label">{{item.state}}</span>
+                        </td> 
+                        <td at-title="type" at-sortable class="node-role">
+                            <span class="label">{{item.nodeType}}</span>
+                        </td>
+                </tbody>
+            </table>            
+        </div>
+    </div>
+</div>

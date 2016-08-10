@@ -1,0 +1,108 @@
+
+.job-filter {
+	.btn-group {
+		float: left;
+		margin-right: 10px;
+		.fa-circle {
+			margin-right: 8px;
+		}
+	}
+	.job-search {
+		float: left;
+		width: 200px;
+		position: relative;
+		span {
+			position: absolute;
+			left: 8px;
+			top: 8px;
+		}		
+	}
+	.badge-white {
+		margin-left: 8px;
+	}
+	.form-control {
+		font-weight: normal;
+		border-radius: 3px;
+		padding-left: 25px;
+		&:focus, &:active, &:visited{
+			border-color: $purple !important;
+		}
+	}	
+}
+
+.job-list {
+	th {
+		text-transform: uppercase;
+		padding: 12px !important;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		color: $gray;
+	}
+	td {
+		padding: 12px !important;
+	}
+	.progress {
+		margin: 0;
+		height: 8px;
+		.progress-bar {
+			height: 8px;
+		}
+	}
+}
+
+.job-item-image {
+	width: 40px;
+	height: 40px;
+	border-radius: 5px;
+	background: #626875;
+	float: left;
+	margin-right: 10px;
+	overflow: hidden;
+	img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.job-resource {
+	margin-top: 10px;
+	padding: 10px 0;
+	.resource-detail {
+		float: left;
+	}
+	.resource-item {
+		margin-right: 25px;
+		float: left;
+	}
+	.resource-icon {
+		float: left;
+		margin-right: 10px;
+	}
+	.resource-name {
+		font-weight: bold;
+		font-size: 1px;
+	}
+	.resource-stat {
+		font-size: 13px;
+	}
+}
+
+.job-tab {
+	margin-top: 20px;
+}
+
+#job {
+	.job-item-image {
+		width: 48px;
+		height: 48px;
+	}
+	.content-title {
+		.addon {
+			font-size: 13px;
+			margin-top: 5px;
+		}
+		.text-healthy, .text-danger {
+			margin-right: 5px;
+		}
+	}
+}

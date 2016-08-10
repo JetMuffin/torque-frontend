@@ -1,0 +1,80 @@
+<a back-button class="btn-back"><i class="fa fa-chevron-left"></i>Back</a>
+<div id="job" ng-controller="JobDetailController" class="animated fadeIn">
+	<h3 class="content-title">
+		{{job.name}}
+		<div class="addon">
+			<span class="text-healthy" ng-if="job.status == 'Complete'">Complete</span>
+			<span class="text-danger" ng-if="job.status == 'Queued'">Queued</span>
+			<span class="text-gray">{{job.ctime}}</span>
+		</div>
+	</h3>
+	<div class="job-resource">
+		<div class="resource-item">
+			<div class="dcci dcci-cpu resource-icon"></div>
+			<div class="resource-detail">
+				<div class="resource-stat">{{job.used_resource.cpus.scalar.value}}</div>
+				<div class="resource-name text-purple">CPU</div>
+			</div>
+		</div>
+		<div class="resource-item">
+			<div class="dcci dcci-mem resource-icon"></div>
+			<div class="resource-detail">
+				<div class="resource-stat">{{job.used_resource.mem.scalar.value}} MB</div>
+				<div class="resource-name text-pink">MEMORY</div>
+			</div>
+		</div>
+		<div class="resource-item">
+			<div class="dcci dcci-disk resource-icon"></div>
+			<div class="resource-detail">
+				<div class="resource-stat">{{job.used_resource.disk.scalar.value}} MB</div>
+				<div class="resource-name text-blue">DISK</div>
+			</div>				
+		</div>				     
+	</div>
+	<div class="clearfix"></div>
+	
+	<uib-tabset class="job-tab dcc-tab">
+    	<uib-tab index="1" heading="Detail">
+			<div class="row basic-information">
+				<div class="col-sm-12">
+					<dl class="dl-horizontal">
+						<dt>ID</dt>
+						<dd ng-bind="job.id"></dd>
+						<dt>Name</dt>
+						<dd ng-bind="job.name"></dd>
+						<dt>User</dt>
+						<dd ng-bind="job.euser"></dd>
+						<dt>Owner</dt>
+						<dd ng-bind="job.owner"></dd>
+						<dt>Start Time</dt>
+						<dd>{{job.startTime}}</dd>
+						<dt>Error Path</dt>
+						<dd ng-bind="job.errorPath"></dd>						
+						<dt>Output Path</dt>
+						<dd ng-bind="job.outputPath"></dd>		
+						<dt>Queue</dt>
+						<dd ng-bind="job.queue"></dd>	
+						<dt>Priority</dt>
+						<dd ng-bind="job.priority"></dd>											
+					</dl>
+				</div>
+			</div>
+    	</uib-tab>
+		<uib-tab index="2" heading="Error">
+			<div class="col-sm-12">
+				<div ng-controller="JobDetailErrorController">
+					<div ng-repeat="log in logs" class="log-line">{{log|formatLogs}}</div>
+					<button class="btn btn-sm pull-right btn-primary" ng-click="download()">Download</button>
+				</div>
+			</div>
+		</uib-tab>    
+		<uib-tab index="3" heading="Output">
+			<div class="col-sm-12">
+				<div ng-controller="JobDetailOutputController">
+					<div ng-repeat="log in logs" class="log-line">{{log|formatLogs}}</div>
+					<button class="btn btn-sm pull-right btn-primary" ng-click="download()">Download</button>
+				</div>
+			</div>
+		</uib-tab> 			
+  	</uib-tabset>
+</div>

@@ -1,0 +1,47 @@
+<div id="job" ng-controller="JobController" class="animated fadeIn">
+	<h3 class="content-title">
+		{{jobs.length}} Jobs
+	</h3>
+	<div class="row">
+		<div class="job-filter m-b col-sm-12">
+			<div class="btn-group" role="group" aria-label="...">
+				<button type="button" ui-sref-active="selected" class="btn btn-default" ui-sref="navbar.job({query: 'all'})">All <span class="badge badge-white selected">{{jobCount}}</span></button>
+				<button type="button" class="btn btn-default" ui-sref-active="selected"  ui-sref="navbar.job({query: 'Complete'})"><i class="fa fa-circle text-success"></i>Complete<span class="badge badge-white">{{healthyJobCount}}</span></button>
+				<button type="button" class="btn btn-default" ui-sref-active="selected" ui-sref="navbar.job({query: 'Queued'})"><i class="fa fa-circle text-primary"></i>Queued<span class="badge badge-white">{{unhealthyJobCount}}</span></button>
+			</div>
+			<form ng-submit="search()">
+				<div class="job-search">
+					<span><i class="fa fa-search"></i></span>
+				    <input type="text" class="form-control" placeholder="Filter" ng-model="search_key" >
+				</div>			
+			</form>	
+			<button class="pull-right btn btn-primary" ng-click="openJobModal()">Create Job</button>
+			<div class="clearfix"></div>		    
+		</div>
+		<div class="job-list dcc-list col-sm-12">
+			<table class="table table-striped" at-table at-list="jobs" at-config="config">
+				<thead>
+				</thead>
+				<tbody>
+					<tr ng-click="rowClick(item.id)">
+				    	<td at-implicit at-sortable at-attribute="name" at-initial-sorting="asc"></td>
+				    	<td at-implicit at-title="user" at-sortable at-attribute="euser">
+				    	<td at-implicit at-title="node" at-sortable at-attribute="execHost">
+				    	<td at-implicit at-title="queue" at-sortable at-attribute="queue">
+				    	</td>
+                        <td at-title="status" at-sortable>
+                            <span class="label label-{{item.status_color}}">{{item.status}}</span>
+                        </td>
+				    	<td at-title="createtime" at-sortable>{{item.ctime }}</td>
+				    	<td at-title="progress" at-sortable>
+							<div class="progress">
+	                        	<div style="width: {{item.walltime_remaining}}%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="{{item.walltime_remaining}}" role="progressbar" class="progress-bar progress-bar-success">
+	                            </div>
+	                        </div>  
+	                    </td>
+				    </tr>
+				</tbody>
+			</table>			
+		</div>
+	</div>
+</div>
